@@ -5,15 +5,18 @@ on: [push]
 jobs:
   dive:
     runs-on: ubuntu-latest
-    name: Analyze img efficiency
+    name: Analyze image efficiency
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build image
-        run: docker build -t sample:latest .
-      - name: Dive
-        uses: yuichielectric/dive-action@0.0.4
-        with:
-          image: "sample:latest"
-          config-file: ${{ github.workspace }}/.dive-ci.yml
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+     - name: Checkout       
+       uses: actions/checkout@v2      
+     - name: Build image      
+       run: docker build -t iamsreelax/dive:v1 .     
+     - name: Dive       
+       uses: yuichielectric/dive-action@0.0.4     
+       with:        
+         image: "iamsreelax/dive:v1"    
+     - name: push to docker hub      
+       run: |         
+        docker login -u iamsreelax -p DockerHub123     
+        # docker build -t iamsreelax/dive:2     
+        docker push iamsreelax/dive:v1
