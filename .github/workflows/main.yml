@@ -5,7 +5,7 @@ on: [push]
 jobs:
   dive:
     runs-on: ubuntu-latest
-    name: Analyze image efficiency
+    name: Analyze img efficiency
     steps:
       - name: Checkout
         uses: actions/checkout@v2
